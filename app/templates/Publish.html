@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body style="background-color:rgb(0, 162, 255)">
+<div style="background-color:rgba(0, 255, 221, 0.363)">
+        <h1>Publish Input</h1>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.Input.label }}<br>
+                {{ form.Input(size=32) }}<br>
+                {% for error in form.Input.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit() }}</p>
+            <p>
+                    
+                {% for item in load %}    
+                <li>{{ item }}</li>
+                {% endfor %}
+                
+                        
+            </p> 
+            
+        </form>
+    
+</div>
+</body>
+{% endblock %}
