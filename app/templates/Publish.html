@@ -2,7 +2,7 @@
 {% block content %}
 
 <body style="background-color:rgb(0, 162, 255)">
-<div style="background-color:rgba(0, 255, 221, 0.363)">
+    <div style="background-color:rgba(0, 255, 221, 0.363)">
         <h1>Publish Input</h1>
         <form action="" method="post">
             {{ form.hidden_tag() }}
@@ -14,17 +14,26 @@
                 {% endfor %}
             </p>
             <p>{{ form.submit() }}</p>
-            <p>
-                    
+            <p>                    
                 {% for item in load %}    
                 <li>{{ item }}</li>
-                {% endfor %}
-                
-                        
-            </p> 
-            
-        </form>
-    
-</div>
+                {% endfor %}           
+            </p>
+        </form> 
+    </div>    
+    <div style="background-color:rgba(0, 255, 221, 0.363)">
+        <h1>Subscribed Topic</h1>
+        <form action="" method="post">        
+                    {{ form.hidden_tag() }}
+                   
+                    <p>                          
+                        <li>You are subscribed to amaina/{{ topic }}</li>
+                        {% for item in sub_value %}    
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </p> 
+                    
+        </form>       
+    </div>
 </body>
 {% endblock %}
