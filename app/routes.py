@@ -8,7 +8,7 @@ import paho.mqtt.client as paho
 broker="sungura1-angani-ke-host.africastalking.com"
 port = 10883                         #Broker port
 user = "amaina"                    #Connection username
-password = "TamaRind"            #Connection password
+password = "Set_password"            #Connection password
 
 def on_connect(client, userdata, flags, rc):
         global message
@@ -16,16 +16,14 @@ def on_connect(client, userdata, flags, rc):
         if rc == 0:
     
             message="Connected to broker"
-            time.sleep(5)
-            print (message)
+            
             global Connected                #Use global variable
             Connected = True                #Signal connection 
     
         else:
     
             message = "Connection failed"
-            time.sleep(5)
-            print (message)
+            
 Payload=[]
 def on_message(client, userdata, message):
     global Payload
