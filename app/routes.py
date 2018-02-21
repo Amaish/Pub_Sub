@@ -3,6 +3,7 @@ from app import app
 from app.forms import Subscribe_form, Publish_form
 import time
 import paho.mqtt.client as paho
+import random
 
 
 broker="sungura1-angani-ke-host.africastalking.com"
@@ -39,7 +40,7 @@ def index():
     
     return render_template('index.html', title='Home', message=message )
 
-client= paho.Client("Anthony-001") #create client object client1.on_publish = on_publish #assign function to callback client1.connect(broker,port) #establish connection client1.publish("house/bulb1","on")
+client= paho.Client("Anthony-001"+str(random(10,1000))) #create client object client1.on_publish = on_publish #assign function to callback client1.connect(broker,port) #establish connection client1.publish("house/bulb1","on")
 client.username_pw_set(user, password=password)    #set username and password
 client.connect(broker, port)#connect
 client.loop_start() #start loop to process received messages
