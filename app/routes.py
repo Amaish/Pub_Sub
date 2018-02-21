@@ -16,16 +16,16 @@ def on_connect(client, userdata, flags, rc):
         if rc == 0:
     
             message="Connected to broker"
-            time.sleep(5)
-            print (message)
+            
             global Connected                #Use global variable
             Connected = True                #Signal connection 
     
         else:
     
             message = "Connection failed"
-            time.sleep(5)
-            print (message)
+        
+        print message
+            
 Payload=[]
 def on_message(client, userdata, message):
     global Payload

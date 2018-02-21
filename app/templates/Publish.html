@@ -1,8 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+    #Publish {
+        position: absolute;
+        left: 0px;
+        width: 50%;
+        
+    }
+    #Subscribe {
+        position: absolute;
+        right: 0px;
+        width: 50%;
+        
+        
+    }
+    </style>
 
-<body style="background-color:rgb(0, 162, 255)">
-    <div style="background-color:rgba(0, 255, 221, 0.363)">
+<body >
+    <div id="Publish">
         <h1>Publish Input</h1>
         <form action="" method="post">
             {{ form.hidden_tag() }}
@@ -21,7 +36,7 @@
             </p>
         </form> 
     </div>    
-    <div style="background-color:rgba(0, 255, 221, 0.363)">
+    <div id = "Subscribe" >
         <h1>Subscribed Topic</h1>
         <form action="" method="post">        
                     {{ form.hidden_tag() }}
