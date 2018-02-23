@@ -4,18 +4,12 @@ from app.forms import Subscribe_form, Publish_form, Index_form
 import time
 import paho.mqtt.client as paho
 from random import randint
-import socket
+
 from celery import Celery
 
 
 ran = ""
-def create_socket():
-    global s
-    global socket_message
-    s= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    socket_message = "Socket created"
-    print socket_message
 
 
 Client =""
@@ -23,7 +17,7 @@ user = ""
 port = ""
 password = ""
 broker = ""
-socket_message = ""
+#socket_message = ""
 message = ""
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -45,9 +39,10 @@ def index():
         client.connect(broker, port)
         client.loop_start()
         
+        
         return redirect('/Subscribe')
     print message
-    return render_template('index.html', title='Home', message=message, socket_message=socket_message, form=form )
+    return render_template('index.html', title='Home', message=message, form=form )
 
 
 
@@ -89,7 +84,7 @@ def on_message(client, userdata, message):
 #client= paho.Client("Anthony-001") #create client object client1.on_publish = on_publish #assign function to callback client1.connect(broker,port) #establish connection client1.publish("house/bulb1","on")
 # client.username_pw_set(user, password=password)    #set username and password
 # client.connect(broker, port)#connect
-create_socket()
+
 
 
 #client.loop_start() #start loop to process received messages
@@ -103,28 +98,36 @@ topic = ["Temperature","Weather","News","Sports"]
 @app.route('/Subscribe', methods=['GET', 'POST'])
 def Subscribe():
     global my_topic
+    
+    #client.connect(broker, port)
     form = Subscribe_form()
     if form.validate_on_submit():
         if form.Topic.data == "Temperature":
             value = 0
             my_topic = topic[value]
+            client.subscribe("amaina/"+my_topic)
             return redirect('/Publish')
         if form.Topic.data == "Weather":
             value = 1
             my_topic = topic[value]
+            client.subscribe("amaina/"+my_topic)
             return redirect('/Publish')
         if form.Topic.data == "News":
             value = 2
             my_topic = topic[value]
+            client.subscribe("amaina/"+my_topic)
             return redirect('/Publish')
         if form.Topic.data == "Sports":
             value = 3
             my_topic = topic[value]
+            client.subscribe("amaina/"+my_topic)
             return redirect('/Publish')
         flash('Invalid topic try again,'.format(form.Topic.data))
         return redirect('/Subscribe')
     return render_template('Subscribe.html', title='Subscribe',topic=topic,form=form)
 
+
+#client.connect(broker, port)
 Input=["Welcome"]
 @app.route('/Publish', methods=['GET','POST'])
 def Publish():
@@ -136,8 +139,7 @@ def Publish():
         Input.append(form.Input.data)
         Pub = form.Input.data
         client.publish(sub_topic,Pub)
-        print Pub
-        client.subscribe(sub_topic)
+        print Pub        
         return redirect('/Publish')
     return render_template('Publish.html', title='Publish',load=Input,Payload=Payload,topic=my_topic, form=form)
 
