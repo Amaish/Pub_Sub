@@ -1,5 +1,6 @@
 Flask==0.12.2
 Flask-WTF==0.14.2
+celery==4.1.0
 futures==3.2.0
 gunicorn==19.7.1
 itsdangerous==0.24
