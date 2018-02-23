@@ -8,8 +8,25 @@ from random import randint
 from celery import Celery
 
 
-ran = ""
-
+message = ""
+def on_connect(client, userdata, flags, rc):
+        global message
+        
+        if rc == 0:
+    
+            message="Connected to broker"
+            
+            global Connected                #Use global variable
+            Connected = True                #Signal connection 
+    
+        else:
+    
+            message = "Connection failed"
+        
+Payload=["test"]
+def on_message(client, userdata, message):
+    global Payload
+    Payload.append(message.payload)
 
 
 Client =""
@@ -17,7 +34,6 @@ user = ""
 port = ""
 password = ""
 broker = ""
-#socket_message = ""
 message = ""
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -42,54 +58,9 @@ def index():
         
         return redirect('/Subscribe')
     print message
-    return render_template('index.html', title='Home', message=message, form=form )
+    return render_template('index.html', title='Home', connect_message=message, form=form )
 
-
-
-
-
-
-
-# client = Client
-
-# broker="sungura1-angani-ke-host.africastalking.com"
-# port = 10883                         #Broker port
-# user = "amaina"                    #Connection username
-# password = "TamaRind"            #Connection password
-# client= paho.Client("Anthony-001"+ran) #create client object client1.on_publish = on_publish #assign function to callback client1.connect(broker,port) #establish connection client1.publish("house/bulb1","on")
-# client.username_pw_set(user, password=password)    #set username and password
-# client.connect(broker, port)#connect
-#client.loop_start() #start loop to process received messages
 client= paho.Client(Client)
-def on_connect(client, userdata, flags, rc):
-        global message
-        
-        if rc == 0:
-    
-            message="Connected to broker"
-            
-            global Connected                #Use global variable
-            Connected = True                #Signal connection 
-    
-        else:
-    
-            message = "Connection failed"
-        
-Payload=["test"]
-def on_message(client, userdata, message):
-    global Payload
-    Payload.append(message.payload)
-    
-
-#client= paho.Client("Anthony-001") #create client object client1.on_publish = on_publish #assign function to callback client1.connect(broker,port) #establish connection client1.publish("house/bulb1","on")
-# client.username_pw_set(user, password=password)    #set username and password
-# client.connect(broker, port)#connect
-
-
-
-#client.loop_start() #start loop to process received messages
-# client.on_connect= on_connect
-# client.on_message= on_message
 client.on_connect= on_connect
 client.on_message= on_message
 
@@ -98,8 +69,6 @@ topic = ["Temperature","Weather","News","Sports"]
 @app.route('/Subscribe', methods=['GET', 'POST'])
 def Subscribe():
     global my_topic
-    
-    #client.connect(broker, port)
     form = Subscribe_form()
     if form.validate_on_submit():
         if form.Topic.data == "Temperature":
@@ -124,7 +93,7 @@ def Subscribe():
             return redirect('/Publish')
         flash('Invalid topic try again,'.format(form.Topic.data))
         return redirect('/Subscribe')
-    return render_template('Subscribe.html', title='Subscribe',topic=topic,form=form)
+    return render_template('Subscribe.html', title='Subscribe',connect_message=message,topic=topic,form=form)
 
 
 #client.connect(broker, port)
@@ -141,5 +110,5 @@ def Publish():
         client.publish(sub_topic,Pub)
         print Pub        
         return redirect('/Publish')
-    return render_template('Publish.html', title='Publish',load=Input,Payload=Payload,topic=my_topic, form=form)
+    return render_template('Publish.html', title='Publish',load=Input,Payload=Payload,connect_message=message,topic=my_topic, form=form)
 
