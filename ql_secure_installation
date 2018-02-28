@@ -1,0 +1,14 @@
+[0;1;32m●[0m mariadb.service - MariaDB 10.1.30 database server
+   Loaded: loaded (/lib/systemd/system/mariadb.service; enabled; vendor preset: enabled)
+   Active: [0;1;32mactive (running)[0m since Fri 2018-02-23 14:23:09 EAT; 48s ago
+     Docs: man:mysqld(8)
+           https://mariadb.com/kb/en/library/systemd/
+ Main PID: 28115 (mysqld)
+   Status: "Taking your SQL requests now..."
+    Tasks: 26 (limit: 4915)
+   CGroup: /system.slice/mariadb.service
+           └─28115 /usr/sbin/mysqld
+
+Feb 23 14:23:07 amaina-Lenovo-ideapad-110-15ISK systemd[1]: Starting MariaDB 10.1.30 database server...
+Feb 23 14:23:08 amaina-Lenovo-ideapad-110-15ISK mysqld[28115]: 2018-02-23 14:23:08 139943069810624 [Note] /usr/sbin/mysqld (mysqld 10.1.30-MariaDB-0ubuntu0.17.10.1) starting as process 28115 ...
+Feb 23 14:23:09 amaina-Lenovo-ideapad-110-15ISK systemd[1]: Started MariaDB 10.1.30 database server.

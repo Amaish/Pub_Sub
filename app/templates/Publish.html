@@ -42,7 +42,7 @@
                     {{ form.hidden_tag() }}
                    
                     <p>                          
-                        <li>You are subscribed to amaina/{{ topic }}</li>
+                        <li>You are subscribed to {{ my_topic }}</li>
                         {% for item in Payload %}    
                         <li>{{ item }}</li>
                         {% endfor %}

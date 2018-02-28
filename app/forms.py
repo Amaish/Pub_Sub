@@ -10,6 +10,7 @@ class Subscribe_form(FlaskForm):
 class Publish_form(FlaskForm):
     Input = TextField('Input', validators=[DataRequired()])
     submit = SubmitField('Publish')
+    
 
 
 class Index_form(FlaskForm):
@@ -19,3 +20,4 @@ class Index_form(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     client = TextField('client(e.g Anto)', validators=[DataRequired()])
     submit = SubmitField('submit')
+
