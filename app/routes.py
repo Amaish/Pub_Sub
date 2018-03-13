@@ -44,12 +44,10 @@ def Subscribe():
     config_app=Pub_Sub_Config(user=user,password=password,Client_=Client_)
     connect_message=config_app.display_message
     if form.validate_on_submit():
-        print"from subscribe "+ connect_message
         topic_=form.topic.data
         if topic.count(topic_)==1:
             sub_topic=user+"/"+topic_
             client.subscribe(sub_topic)
-            print "we are ready"
             return redirect('/Publish')
         else:
             warning_ = "Invalid topic try again,"
@@ -69,17 +67,11 @@ def Publish():
     Payload=payload_vals
     form = Publish_form()
     if form.validate_on_submit():
-        print "From Publish " + connect_message
         Input.append(str(form.Pub_data.data))
         pub_data=form.Pub_data.data
         client.publish(sub_topic,pub_data)
-        print Input
-        print pub_data
-        print sub_topic
         payload_app=Pub_Sub_Config(user=user,password=password,Client_=Client_)
         payload_vals.append(payload_app.display_payload)
-        print payload_vals
-        print "my topic = "+ payload_app.display_topic
         return redirect('/Publish')
     return render_template('Publish.html', title='Publish',Input=Input,my_topic=sub_topic,connect_message=connect_message,Payload=Payload,form=form)
 
