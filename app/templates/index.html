@@ -7,20 +7,7 @@
         <b> {{ socket_message }} </b><br>
         <form action="" method="post","get">
                         {{ form.hidden_tag() }}
-                        <p>
-                                {{ form.Broker.label }}<br>
-                                {{ form.Broker(size=32) }}<br>
-                                {% for error in form.Broker.errors %}
-                                <span style="color: red;">[{{ error }}]</span>
-                                {% endfor %}
-                        </p>
-                        <p>
-                                {{ form.port.label }}<br>
-                                {{ form.port(size=32) }}<br>
-                                {% for error in form.port.errors %}
-                                <span style="color: red;">[{{ error }}]</span>
-                                {% endfor %}
-                        </p>
+                        
                         <p>
                                 {{ form.user.label }}<br>
                                 {{ form.user(size=32) }}<br>
@@ -36,9 +23,9 @@
                                 {% endfor %}
                         </p>
                         <p>
-                                {{ form.client.label }}<br>
-                                {{ form.client(size=32) }}<br>
-                                {% for error in form.client.errors %}
+                                {{ form.Client_.label }}<br>
+                                {{ form.Client_(size=32) }}<br>
+                                {% for error in form.Client_.errors %}
                                 <span style="color: red;">[{{ error }}]</span>
                                 {% endfor %}
                         </p>

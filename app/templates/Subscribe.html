@@ -8,9 +8,9 @@
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <p>
-                {{ form.Topic.label }}<br>
-                {{ form.Topic(size=32) }}<br>
-                {% for error in form.Topic.errors %}
+                {{ form.topic.label }}<br>
+                {{ form.topic(size=32) }}<br>
+                {% for error in form.topic.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>

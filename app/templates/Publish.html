@@ -22,15 +22,15 @@
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <p>
-                {{ form.Input.label }}<br>
-                {{ form.Input(size=32) }}<br>
-                {% for error in form.Input.errors %}
+                {{ form.Pub_data.label }}<br>
+                {{ form.Pub_data(size=32) }}<br>
+                {% for error in form.Pub_data.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>{{ form.submit() }}</p>
             <p>                    
-                {% for item in load %}    
+                {% for item in Input %}    
                 <li>{{ item }}</li>
                 {% endfor %}           
             </p>
