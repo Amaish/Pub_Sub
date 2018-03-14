@@ -32,7 +32,7 @@ paho-mqtt==1.3.1
 pip-autoremove==0.9.0
 pipdeptree==0.10.1
 psutil==5.0.1
-PyBluez==0.18
+PyBluez==0.20
 pycrypto==2.6.1
 pycurl==7.43.0
 pygobject==3.24.1
