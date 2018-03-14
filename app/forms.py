@@ -25,17 +25,17 @@ class on_connection:
         else:
             connect_message="Waiting for connection"
             return connect_message
-Payload=""
+Payload=[]
 topic=""        
 class on_messaging:
     def __init__(self):
-        self.Payload=""
+        self.Payload=[]
         self.topic=""             
 
     def on_message_func(self,client, userdata, message):
         global topic, Payload
         topic= str(message.topic)
-        Payload = str (message.payload)
+        Payload.append(str (message.payload))
         
 
 Connected = False
@@ -56,7 +56,7 @@ class Pub_Sub_Config:
         client.on_connect= connection.on_connect_func#.on_connect_func  #attach function to callback
         client.on_message= on_messaging.on_message_func
         client.connect(broker,port)
-        client.loop_start()
+        #client.loop_start()
 
 class Index_form(FlaskForm):
     user = TextField('user', validators=[DataRequired()])

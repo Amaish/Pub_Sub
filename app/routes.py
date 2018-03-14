@@ -55,7 +55,6 @@ def Subscribe():
             return redirect('/Subscribe')
     return render_template('Subscribe.html', title='Subscribe',topic=topic,connect_message=connect_message,form=form)
 
-payload_vals = []
 Input=["Welcome"]
 pub_data = ""
 @app.route('/Publish', methods=['GET','POST'])
@@ -64,14 +63,12 @@ def Publish():
     global pub_data
     config_app=Pub_Sub_Config(user=user,password=password,Client_=Client_)
     connect_message=config_app.display_message
-    Payload=payload_vals
+    Payload=config_app.display_payload
     form = Publish_form()
     if form.validate_on_submit():
         Input.append(str(form.Pub_data.data))
         pub_data=form.Pub_data.data
         client.publish(sub_topic,pub_data)
-        payload_app=Pub_Sub_Config(user=user,password=password,Client_=Client_)
-        payload_vals.append(payload_app.display_payload)
         return redirect('/Publish')
     return render_template('Publish.html', title='Publish',Input=Input,my_topic=sub_topic,connect_message=connect_message,Payload=Payload,form=form)
 
