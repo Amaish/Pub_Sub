@@ -34,9 +34,7 @@ pipdeptree==0.10.1
 psutil==5.0.1
 pycrypto==2.6.1
 pycurl==7.43.0
-pygobject==3.27.0
 pylint==1.8.2
-python-apt==0.0.0
 python-engineio==2.0.2
 python-socketio==1.8.4
 pytz==2018.3
