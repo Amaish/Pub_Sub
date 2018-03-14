@@ -35,7 +35,7 @@ psutil==5.0.1
 PyBluez==0.20
 pycrypto==2.6.1
 pycurl==7.43.0
-pygobject==3.24.1
+pygobject==3.27.0
 pylint==1.8.2
 python-apt==1.4.0b3
 python-engineio==2.0.2
