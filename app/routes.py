@@ -69,9 +69,15 @@ def Publish():
         Input.append(str(form.Pub_data.data))
         pub_data=form.Pub_data.data
         client.publish(sub_topic,pub_data)
+        time.sleep(0.5)
         return redirect('/Publish')
     elif 'Unsubscribe' in request.form:
-        client.unsubscribe(sub_topic)
+        try:
+            client.unsubscribe(sub_topic)
+            Input[:]=[]
+            Payload[:]=[]
+        except ValueError:
+            return redirect('/Subscribe')        
         return redirect('/Subscribe')
     return render_template('Publish.html', title='Publish',Input=Input,my_topic=sub_topic,connect_message=connect_message,Payload=Payload,form=form)
 
