@@ -36,6 +36,7 @@ class on_messaging:
         global topic, Payload
         topic= str(message.topic)
         Payload.append(str (message.payload))
+        print "my topic is " +topic
         
 
 Connected = False
@@ -73,6 +74,7 @@ class Subscribe_form(FlaskForm):
 class Publish_form(FlaskForm):
     Pub_data = TextField('Input', validators=[DataRequired()])
     submit = SubmitField('Publish')
+    Unsubscribe = SubmitField('Unsubscribe')
     
 
 """The value of rc determines success or not:

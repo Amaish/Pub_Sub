@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, request
 from app import app
 from app.forms import Subscribe_form, Publish_form, Index_form, Pub_Sub_Config, on_connection, on_messaging
 import time
@@ -70,5 +70,8 @@ def Publish():
         pub_data=form.Pub_data.data
         client.publish(sub_topic,pub_data)
         return redirect('/Publish')
+    elif 'Unsubscribe' in request.form:
+        client.unsubscribe(sub_topic)
+        return redirect('/Subscribe')
     return render_template('Publish.html', title='Publish',Input=Input,my_topic=sub_topic,connect_message=connect_message,Payload=Payload,form=form)
 

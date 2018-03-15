@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-    #Publish {
+    #Publish_data {
         position: absolute;
         left: 0px;
         width: 50%;
@@ -17,38 +17,40 @@
     </style>
 
 <body >
-    <div id="Publish">
-        <h1>Publish Input</h1>
-        <form action="" method="post">
+    
+        
+    <form id="Publish" action="/Publish" method="post">
             {{ form.hidden_tag() }}
-            <p>
-                {{ form.Pub_data.label }}<br>
-                {{ form.Pub_data(size=32) }}<br>
-                {% for error in form.Pub_data.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>{{ form.submit() }}</p>
-            <p>                    
-                {% for item in Input %}    
-                <li>{{ item }}</li>
-                {% endfor %}           
-            </p>
-        </form> 
-    </div>    
-    <div id = "Subscribe" >
-        <h1>Subscribed Topic</h1>
-        <form action="" method="post">        
-                    {{ form.hidden_tag() }}
-                   
-                    <p>                          
-                        <li>You are subscribed to {{ my_topic }}</li>
-                        {% for item in Payload %}    
-                        <li>{{ item }}</li>
-                        {% endfor %}
-                    </p> 
-                    
-        </form>       
-    </div>
+            <div id ="Publish_data" >
+                    <h1>Publish Input</h1>
+                <p>
+                    {{ form.Pub_data.label }}<br>
+                    {{ form.Pub_data(size=32) }}<br>
+                    {% for error in form.Pub_data.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>{{ form.submit() }}</p>
+                <p>                    
+                    {% for item in Input %}    
+                    <li>{{ item }}</li>
+                    {% endfor %}           
+                </p>
+            </div>    
+            <div id="Subscribe" >
+                    <h1>Subscribed Topic</h1>
+                    <p>{{ form.Unsubscribe() }}</p>                          
+                    <div>
+                        <p>                          
+                                <li>You are subscribed to {{ my_topic }}</li>
+                                {% for item in Payload %}    
+                                <li>{{ item }}</li>
+                                {% endfor %}
+                            </p>
+                    </div>
+            </div>
+                
+    </form>       
+    
 </body>
 {% endblock %}
